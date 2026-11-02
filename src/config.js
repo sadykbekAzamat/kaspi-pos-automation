@@ -8,6 +8,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
 
 export const PORT = process.env.PORT || 3000;
+// 127.0.0.1 keeps the API (refunds included) off the network.
+export const HOST = process.env.HOST || '0.0.0.0';
 
 // ─── ECDSA P-256 keypair (persisted to keypair.json) ───
 

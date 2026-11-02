@@ -1,0 +1,21 @@
+# The Kaspi till for Akcent Plus (backend/learning-service/lib/kaspi.js).
+# Runs from this folder, so keypair.json and device.json — the till's device
+# identity, made on the first start — stay here across restarts. Listens on
+# 127.0.0.1 only: its API can send invoices and refunds.
+#
+#   echo "TOKEN_SECRET_KEY=$(openssl rand -hex 32)" > .env
+#   docker compose up -d
+services:
+  kaspi-pos:
+    image: node:20-alpine
+    container_name: kaspi-pos
+    working_dir: /app
+    command: sh -c "npm ci --omit=dev && node server.js"
+    volumes:
+      - ./:/app
+    env_file: .env
+    environment:
+      - PORT=10030
+      - HOST=127.0.0.1
+    network_mode: host
+    restart: unless-stopped

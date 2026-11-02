@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import { PORT, ROOT_DIR } from './src/config.js';
+import { HOST, PORT, ROOT_DIR } from './src/config.js';
 import authRoutes from './src/routes/auth.js';
 import invoiceRoutes from './src/routes/invoice.js';
 import qrRoutes from './src/routes/qr.js';
@@ -24,7 +24,7 @@ app.use('/api/history', historyRoutes);
 app.use('/api/refund', refundRoutes);
 app.use('/api/session', sessionRoutes);
 
-app.listen(PORT, () => {
-  console.log(`\n  🟢 Kaspi Pay App running at http://localhost:${PORT}\n`);
+app.listen(PORT, HOST, () => {
+  console.log(`\n  🟢 Kaspi Pay App running at http://${HOST}:${PORT}\n`);
   startPolling();
 });
